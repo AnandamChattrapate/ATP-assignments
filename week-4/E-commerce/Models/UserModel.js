@@ -1,10 +1,18 @@
 import {Schema,model} from 'mongoose'
 import { productModel } from './ProductModel.js'
+import mongoose from 'mongoose'
 // create carts schema
-const cartSchema=new Schema({
+const cartSchema = new Schema({
     product:{
         type:Schema.Types.ObjectId,
-        ref:'product'
+        ref:'product',
+        required:[true,"product id required"]
+    },
+    quantity:{
+        type:Number,
+        required:[true,"product quantity required"],
+        min:[1,"quantity must be at least 1"],
+        default:1
     }
 })
 const userSchema=new Schema({

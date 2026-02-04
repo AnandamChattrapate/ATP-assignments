@@ -55,7 +55,7 @@ UserApp.post('/users', async (req, res) => {
 // user authentication route
 UserApp.post('/auth',async (req,res)=>{
   try{
-    // get user cred obj
+    // get user cred obj (user input)
     let userCred=req.body;
     let userOfDB=await UserModel.findOne({username:userCred.username})
     if(userOfDB===null){
@@ -63,6 +63,7 @@ UserApp.post('/auth',async (req,res)=>{
     }
     
     // Compare the plain text password with the hashed password stored in DB
+                                    // input      ====       // DB
     let status=await compare(String(userCred.password), userOfDB.password)
     if (status===false){
       return res.status(401).json({message:"invalid Password"})

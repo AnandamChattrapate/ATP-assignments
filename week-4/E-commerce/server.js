@@ -1,8 +1,9 @@
 import express from 'express'
 import {connect} from 'mongoose'
-// import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser'
 import ProductApi from './API/ProductApi.js'
 import UserApi from './API/UserApi.js'
+
 
 
 // connect to MongoDB 
@@ -15,6 +16,7 @@ try{
    console.log("===DB connection success===")
    // create HTTP server
     const app=express()
+    app.use(cookieParser())
     app.listen(3000)
     app.use(express.json())
     console.log("server listening at port 3000")
